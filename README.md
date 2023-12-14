@@ -1,16 +1,17 @@
 # Welocme to Fotogram 
 * Your Social media app
 
-## USER STORY
+## USER STOR
 
-|   as  |          a usser                |                                       | API Feature                 |
-|-----------|-------------------------------------------|----------------------------------------------|-----------------------------|
-
-
-
+| Category  | User Action                               | Purpose                                      | 
+|-----------|-------------------------------------------|----------------------------------------------|
+|  As  | User | I can view a navbar from every page, so that i can navigte easily btween pagess|
 
 
 
-### Installed packges
+
+
+### Installed packges/Kits
 * npm install
 * react-bootstrap
+*  font awesome
