@@ -1,113 +1,91 @@
 import React, { useState } from "react";
+import axios from "axios";
+
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Image from "react-bootstrap/Image";
+import Container from "react-bootstrap/Container";
+
 import { Link, useHistory } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
-import {
-  Form,
-  Button,
-  Image,
-  Col,
-  Row,
-  Container,
-  Alert,
-} from "react-bootstrap";
-import axios from "axios";
-
-const SignUpForm = () => {
-  const [signUpData, setSignUpData] = useState({
+function SignInForm() {
+  const [signInData, setSignInData] = useState({
     username: "",
-    password1: "",
-    password2: "",
+    password: "",
   });
-  const { username, password1, password2 } = signUpData;
+  const { username, password } = signInData;
 
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
-
-  const handleChange = (event) => {
-    setSignUpData({
-      ...signUpData,
-      [event.target.name]: event.target.value,
-    });
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/signin");
+      await axios.post("/dj-rest-auth/login/", signInData);
+      history.push("/");
     } catch (err) {
       setErrors(err.response?.data);
     }
   };
 
+  const handleChange = (event) => {
+    setSignInData({
+      ...signInData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <Row className={styles.Row}>
-      <Col className="my-auto py-2 p-md-2" md={6}>
+      <Col className="my-auto p-0 p-md-2" md={6}>
         <Container className={`${appStyles.Content} p-4 `}>
-          <h1 className={styles.Header}>sign up</h1>
-
+          <h1 className={styles.Header}>sign in</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
-              <Form.Label className="d-none">username</Form.Label>
+              <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
-                className={styles.Input}
                 type="text"
                 placeholder="Username"
                 name="username"
+                className={styles.Input}
                 value={username}
                 onChange={handleChange}
               />
             </Form.Group>
             {errors.username?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
+              <Alert key={idx} variant="warning">
                 {message}
               </Alert>
             ))}
 
-            <Form.Group controlId="password1">
+            <Form.Group controlId="password">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
-                className={styles.Input}
                 type="password"
                 placeholder="Password"
-                name="password1"
-                value={password1}
-                onChange={handleChange}
-              />
-            </Form.Group>
-            {errors.password1?.map((message, idx) => (
-              <Alert key={idx} variant="warning">
-                {message}
-              </Alert>
-            ))}
-
-            <Form.Group controlId="password2">
-              <Form.Label className="d-none">Confirm password</Form.Label>
-              <Form.Control
+                name="password"
                 className={styles.Input}
-                type="password"
-                placeholder="Confirm password"
-                name="password2"
-                value={password2}
+                value={password}
                 onChange={handleChange}
               />
             </Form.Group>
-            {errors.password2?.map((message, idx) => (
+            {errors.password?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
             ))}
-
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
               type="submit"
             >
-              Sign up
+              Sign in
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
@@ -116,26 +94,25 @@ const SignUpForm = () => {
             ))}
           </Form>
         </Container>
-
         <Container className={`mt-3 ${appStyles.Content}`}>
-          <Link className={styles.Link} to="/signin">
-            Already have an account? <span>Sign in</span>
+          <Link className={styles.Link} to="/signup">
+            Don't have an account? <span>Sign up now!</span>
           </Link>
         </Container>
       </Col>
       <Col
         md={6}
-        className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
+        className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}
       >
         <Image
           className={`${appStyles.FillerImage}`}
           src={
-            "https://api13.iloveimg.com/v1/download/91pvckk67yzl4A27hd5bmx4A1w1n9pxj0bdq6Ay1zrlsbjfkAszAltjm50xk9qnyA2l0qbdpdv87n9q52wr5j064nwnjl5j0vbg2qj4rm3gvc8m69h77kgpllqcshgrh9x1vyv5jv5n3c2z1v7xqqxth9Avbwyvv1mjhchAdf4xg49k1sbfq"
+            "https://api14.iloveimg.com/v1/download/Afn0s2cgf635ky1v75AwAyn90tkAqfk9zyyqmwAfjskttqmshhAnbz5gzq566pb7Ab129hsrb256t1n06y8jx6ckh7ktbtlr36qp09pqtA97hzgqt18dcrqsrcj24v397zk3n4yAgvhtjshypyqry40cncnp086fytsc4dsyw9nj5m4p26tq"
           }
         />
       </Col>
     </Row>
   );
-};
+}
 
-export default SignUpForm;
+export default SignInForm;
