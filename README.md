@@ -5,14 +5,15 @@
 
 | Category  | User Action                               | Purpose                                      | 
 |-----------|-------------------------------------------|----------------------------------------------|
-|  As  | User | I can view a navbar from every page, so that i can navigte easily btween pagess|
-
+|  As  | A user | I can view a navbar from every page, so that i can navigte easily btween pagess|
+| As |  A user | I can create a new account, to access all the features for signed up users |
 
 
 
 
 ### Installed packges/Kits
-* npm install
-* react-bootstrap
-* font awesome
-* react-router
+* Npm install
+* React-bootstrap
+* Font awesome
+* React-router
+* Axios
