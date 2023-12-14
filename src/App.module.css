@@ -3,13 +3,17 @@
     background-color: #f8f8f8;
     min-height: 100vh;
   }
+
+  .Main {
+    padding-top: 80px;
+  }
   
   * {
     box-sizing: border-box;
   }
   
   a {
-    color: #555555;
+    color: #d5d6df;
     transition: color ease-in-out 0.3s;
   }
   
@@ -18,12 +22,12 @@
   }
   
   a:hover i {
-    color: #2142b2;
+    color: #f0ce36;
     transition: color ease-in-out 0.3s;
   }
   
   i {
-    color: #cfced3;
+    color: #fafafa;
     font-size: 1.6rem;
     padding: 7px;
     vertical-align: middle;
@@ -32,5 +36,5 @@
   i:hover {
     cursor: pointer;
     transition: color ease-in-out 0.3s;
-    color: #2142b2;
+    color: #979ba8;
   }
